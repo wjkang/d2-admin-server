@@ -12,9 +12,17 @@ router
   .post('/auth/logout', controllers.auth.logout)
 
   .get('/menu', PermissionCheck({ permission: ["menu_view"] }), controllers.menu.getMenuList)
-  .get('/menu/getaccessmenu', controllers.menu.getAccessMenuList)
+  .get('/menu/access', controllers.menu.getAccessMenuList)
   .get('/menu/menufunctions', controllers.menu.getMenuFunctions)
-  .post('/menu/savemenu', PermissionCheck({ permission: ["menu_edit"] }), controllers.menu.saveMenu)
+  .get('/menu/:id', controllers.menu.getMenu)
+  .post('/menu/save', PermissionCheck({ permission: ["menu_edit"] }), controllers.menu.saveMenu)
+  .del('/menu/:id', controllers.menu.delMenu)
+
+  .get('/route/get', controllers.route.getRoute)
+  .get('/route/paged', controllers.route.getRoutePagedList)
+  .del('/route/del', controllers.route.delRoute)
+  .del('/route/batchdel', controllers.route.delRoutes)
+  .post('/route/save', controllers.route.saveRoute)
 
   .get('/function/pagedlist', PermissionCheck({ permission: ["function_view"], role: ["test"] }), controllers.function.getFunctionPagedList)
   .del('/function/del', PermissionCheck({ permission: ["function_del"] }), controllers.function.delFuntion)

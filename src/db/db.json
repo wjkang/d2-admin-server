@@ -64,13 +64,14 @@
     {
       "id": 4,
       "parentId": 0,
-      "path": "",
+      "path": "1",
       "icon": "camera_enhance",
       "title": "系统",
       "name": "系统",
       "leftMemu": true,
       "functionCode": "",
-      "sort": 1
+      "sort": 1,
+      "type": 1
     },
     {
       "id": 5,
@@ -338,6 +339,7 @@
       "functionCode": "post_edit"
     }
   ],
+  "route": [],
   "function": [
     {
       "name": "2-文章编辑",
