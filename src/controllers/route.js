@@ -71,11 +71,8 @@ export let saveRoute = async (ctx) => {
   if (!entity.title) {
     return responseTemplate.businessError(ctx, "标题不能为空!")
   }
-  if (!entity.component) {
-    return responseTemplate.businessError(ctx, "组件不能为空!")
-  }
-  if (!entity.componentPath) {
-    return responseTemplate.businessError(ctx, "组件路径不能为空!")
+  if (!entity.component&&!entity.componentPath) {
+    return responseTemplate.businessError(ctx, "组件与组件路径不能同时为空!")
   }
   let result = await routeService.saveRoute(entity)
   if (!result.success) {
