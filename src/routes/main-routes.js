@@ -18,9 +18,10 @@ router
   .post('/menu/save', PermissionCheck({ permission: ["menu_edit"] }), controllers.menu.saveMenu)
   .del('/menu/:id', controllers.menu.delMenu)
 
-  .get('/route/get', controllers.route.getRoute)
+  .get('/route', controllers.route.getRouteList)
   .get('/route/paged', controllers.route.getRoutePagedList)
-  .del('/route/del', controllers.route.delRoute)
+  .get('/route/:id', controllers.route.getRoute)
+  .del('/route/:id', controllers.route.delRoute)
   .del('/route/batchdel', controllers.route.delRoutes)
   .post('/route/save', controllers.route.saveRoute)
 

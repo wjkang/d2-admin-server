@@ -339,7 +339,43 @@
       "functionCode": "post_edit"
     }
   ],
-  "route": [],
+  "route": [
+    {
+      "id": "3af738f0-0792-4f34-aae9-3339d0ab12a7",
+      "parentId": 0,
+      "name": "system",
+      "title": "系统设置",
+      "path": "/system",
+      "permission": "",
+      "component": "layoutHeaderAside",
+      "componentPath": "layout/header-aside/layout",
+      "sort": "1",
+      "isLock": false,
+      "cache": false
+    },
+    {
+      "id": "aa4c13f7-f3eb-4d1e-aac2-c2b2f7f8d296",
+      "parentId": "3af738f0-0792-4f34-aae9-3339d0ab12a7",
+      "name": "menuPage",
+      "title": "菜单管理",
+      "path": "/system/menu",
+      "component": "menu",
+      "componentPath": "pages/sys/menu/index",
+      "sort": "2",
+      "cache": true
+    },
+    {
+      "id": "618e2e9c-8afe-4c64-b486-a4b08c752a81",
+      "parentId": "3af738f0-0792-4f34-aae9-3339d0ab12a7",
+      "title": "路由管理",
+      "name": "routePage",
+      "path": "/system/route",
+      "component": "route",
+      "componentPath": "pages/sys/route/index",
+      "sort": "3",
+      "cache": true
+    }
+  ],
   "function": [
     {
       "name": "2-文章编辑",

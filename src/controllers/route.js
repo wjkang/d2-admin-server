@@ -2,12 +2,16 @@ import routeService from '../services/routeService'
 import * as responseTemplate from '../lib/responseTemplate'
 
 export let getRoute = async (ctx) => {
-  let id = ctx.query.id
+  let id = ctx.params.id
   let route = await routeService.getRoute(id)
   if (!route) {
     return responseTemplate.businessError(ctx, "route不存在!")
   }
-  return responseTemplate.success(ctx, post)
+  return responseTemplate.success(ctx, route)
+}
+export let getRouteList = async (ctx) => {
+  let routeList = await routeService.getRouteList()
+  return responseTemplate.success(ctx, routeList)
 }
 export let getRoutePagedList = async (ctx, next) => {
   let pageIndex = ctx.query.pageIndex
@@ -42,7 +46,7 @@ export let getRoutePagedList = async (ctx, next) => {
   return next()
 }
 export let delRoute = async (ctx) => {
-  let id = ctx.query.id
+  let id = ctx.params.id
   await routeService.delRoute(id)
   return responseTemplate.success(ctx, null)
 }
@@ -57,63 +61,22 @@ export let delRoutes = async (ctx) => {
 
 export let saveRoute = async (ctx) => {
   let entity = ctx.request.body
-
-
-
-
-  if (entity.parentId == "") {
-    return responseTemplate.businessError(ctx, "parentId不能为空!")
-  }
-
-
-
-  if (entity.name == "") {
+  console.log(entity)
+  if (!entity.name) {
     return responseTemplate.businessError(ctx, "name不能为空!")
   }
-
-
-
-  if (entity.path == "") {
+  if (!entity.path) {
     return responseTemplate.businessError(ctx, "path不能为空!")
   }
-
-
-
-  if (entity.title == "") {
+  if (!entity.title) {
     return responseTemplate.businessError(ctx, "标题不能为空!")
   }
-
-
-
-  if (entity.component == "") {
+  if (!entity.component) {
     return responseTemplate.businessError(ctx, "组件不能为空!")
   }
-
-
-
-  if (entity.componentPath == "") {
+  if (!entity.componentPath) {
     return responseTemplate.businessError(ctx, "组件路径不能为空!")
   }
-
-
-
-  if (entity.cache == "") {
-    return responseTemplate.businessError(ctx, "keepAlive不能为空!")
-  }
-
-
-
-  if (entity.isLock == "") {
-    return responseTemplate.businessError(ctx, "isLock不能为空!")
-  }
-
-
-
-  if (entity.sort == "") {
-    return responseTemplate.businessError(ctx, "sort不能为空!")
-  }
-
-
   let result = await routeService.saveRoute(entity)
   if (!result.success) {
     return responseTemplate.businessError(ctx, result.msg)

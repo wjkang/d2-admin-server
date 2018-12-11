@@ -1,11 +1,33 @@
 import model from '../models/baseModel'
 import _ from 'lodash'
 const context = 'route'
+let buildChildren = (parent, list) => {
+    parent.children = []
+    let children = list.filter((item) => {
+        return item.parentId == parent.id
+    })
+    for (let item of children) {
+        buildChildren(item, list)
+    }
+    parent.children.push(...children)
+}
 module.exports = {
     getRoute: async (id) => {
         let db = await model.init(context)
         let route = db.find({ id: id }).value()
         return route
+    },
+    getRouteList: async () => {
+        let db = await model.init(context)
+        let list = JSON.parse(JSON.stringify(db.value()))
+        list = _.sortBy(list, ["sort"])
+        let parentList = list.filter((item) => {
+            return !item.parentId
+        })
+        for (let item of parentList) {
+            buildChildren(item, list)
+        }
+        return parentList
     },
     getRoutePagedList: async (pageIndex, pageSize, sortBy, descending, filter) => {
         let db = await model.init(context)
@@ -96,10 +118,28 @@ module.exports = {
     },
     delRoute: async (id) => {
         let db = await model.init(context)
+        let child = db.find({ parentId: id }).value()
+        if (child) {
+            return {
+                success: false,
+                msg: "请先删除子路由"
+            }
+        }
         await db.remove({ id: id }).write()
+        return {
+            success: true,
+            msg: ""
+        }
     },
     saveRoute: async (route) => {
         let db = await model.init(context)
+        let exist = db.find({ name: route.name }).value()
+        if (exist && exist.id != route.id) {
+            return {
+                success: false,
+                msg: "name已经存在"
+            }
+        }
         if (route.id) {
             await db.find({ id: route.id })
                 .assign(route)
