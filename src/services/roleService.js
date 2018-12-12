@@ -4,6 +4,11 @@ const context = 'role'
 const permissionContext = "permission"
 const roleUserContext = 'roleUser'
 module.exports = {
+    getRole: async (id) => {
+        let db = await model.init(context)
+        let role = db.find({ id: id }).value()
+        return role
+    },
     getRolePagedList: async (pageIndex, pageSize, sortBy, descending, filter) => {
         let db = await model.init(context)
         let roleList = db.value()
@@ -92,11 +97,11 @@ module.exports = {
         })
         return roleFunctions
     },
-    getRoleFuntionsByRoleIds:async(roleIds)=>{
+    getRoleFuntionsByRoleIds: async (roleIds) => {
         let db = await model.init(permissionContext)
         let list = db.value()
         let roleFunctions = list.filter(s => {
-            return roleIds.indexOf(s.roleId)>-1
+            return roleIds.indexOf(s.roleId) > -1
         })
         return roleFunctions
     },

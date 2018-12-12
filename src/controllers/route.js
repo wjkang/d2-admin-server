@@ -61,7 +61,6 @@ export let delRoutes = async (ctx) => {
 
 export let saveRoute = async (ctx) => {
   let entity = ctx.request.body
-  console.log(entity)
   if (!entity.name) {
     return responseTemplate.businessError(ctx, "name不能为空!")
   }
@@ -71,7 +70,7 @@ export let saveRoute = async (ctx) => {
   if (!entity.title) {
     return responseTemplate.businessError(ctx, "标题不能为空!")
   }
-  if (!entity.component&&!entity.componentPath) {
+  if (!entity.component && !entity.componentPath) {
     return responseTemplate.businessError(ctx, "组件与组件路径不能同时为空!")
   }
   let result = await routeService.saveRoute(entity)

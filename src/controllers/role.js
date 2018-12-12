@@ -1,16 +1,23 @@
 import roleService from '../services/roleService'
 import menuService from '../services/memuService'
 import * as responseTemplate from '../lib/responseTemplate'
-
-export let getRolePagedList = async (ctx, next) => {
+export let getRole = async (ctx) => {
+    console.log(ctx.params)
+    let id = ctx.params.id
+    let role = await roleService.getRole(id)
+    if (!role) {
+        return responseTemplate.businessError(ctx, "角色不存在")
+    }
+    return responseTemplate.success(ctx, role)
+}
+export let getRolePagedList = async (ctx) => {
     let pageIndex = ctx.query.pageIndex
     let pageSize = ctx.query.pageSize
     let sortBy = ctx.query.sortBy
     let descending = ctx.query.descending
     let filter = JSON.parse(ctx.query.filter)
     let pagedList = await roleService.getRolePagedList(pageIndex, pageSize, sortBy, descending, filter)
-    responseTemplate.success(ctx, pagedList)
-    return next()
+    return responseTemplate.success(ctx, pagedList)
 }
 export let delRole = async (ctx) => {
     let id = ctx.query.id
@@ -28,10 +35,10 @@ export let delRoles = async (ctx) => {
 
 export let saveRole = async (ctx) => {
     let func = ctx.request.body
-    if(func.name==""){
+    if (func.name == "") {
         return responseTemplate.businessError(ctx, "名称不能为空!")
     }
-    if(func.code==""){
+    if (func.code == "") {
         return responseTemplate.businessError(ctx, "编码不能为空!")
     }
     let result = await roleService.saveRole(func)
@@ -51,6 +58,6 @@ export let savePermission = async (ctx) => {
     let menuIds = menuWithChildren.map(s => {
         return s.id
     })
-    await roleService.savePermission(menuIds,data.roleId,data.permissions)
+    await roleService.savePermission(menuIds, data.roleId, data.permissions)
     return responseTemplate.success(ctx, null)
 }
