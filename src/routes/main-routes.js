@@ -32,6 +32,7 @@ router
 
   .get('/role/pagedlist', PermissionCheck({ permission: ["role_view", "role_permission_view", "role_user_view"] }), controllers.role.getRolePagedList)
   .get('/role/:id', controllers.role.getRole)
+  .get('/role/getpermissions/:roleId', controllers.role.getRolePermissions)
   .del('/role/del', PermissionCheck({ permission: ["role_del"] }), controllers.role.delRole)
   .del('/role/batchdel', PermissionCheck({ permission: ["role_del"] }), controllers.role.delRoles)
   .post('/role/save', PermissionCheck({ permission: ["role_edit"] }), controllers.role.saveRole)

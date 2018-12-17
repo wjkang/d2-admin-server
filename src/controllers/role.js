@@ -47,17 +47,13 @@ export let saveRole = async (ctx) => {
     }
     return responseTemplate.success(ctx, null)
 }
-
+export let getRolePermissions = async (ctx) => {
+    let roleId = ctx.params.roleId;
+    let rolePermissions = await roleService.getRoleFunctions(roleId);
+    return responseTemplate.success(ctx, rolePermissions)
+}
 export let savePermission = async (ctx) => {
     let data = ctx.request.body;
-    data.permissions = data.permissions.map(s => {
-        s = JSON.parse(s)
-        return s
-    })
-    let menuWithChildren = await menuService.getMenuFunctions(data.moduleId)
-    let menuIds = menuWithChildren.map(s => {
-        return s.id
-    })
-    await roleService.savePermission(menuIds, data.roleId, data.permissions)
+    await roleService.savePermission(data.roleId, data.permissions)
     return responseTemplate.success(ctx, null)
 }
