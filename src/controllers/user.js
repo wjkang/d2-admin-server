@@ -1,12 +1,19 @@
 import userService from '../services/userService'
 import * as responseTemplate from '../lib/responseTemplate'
-
+export let getUser = async (ctx) => {
+    let id = ctx.params.id
+    let user = await userService.getUserById(id)
+    if (!user) {
+        return responseTemplate.businessError(ctx, "用户不存在")
+    }
+    return responseTemplate.success(ctx, user)
+}
 export let getUserInfo = async (ctx) => {
     let user = ctx.user;
     if (!user || !user.userId) {
         return responseTemplate.businessError(ctx, '获取用户信息失败!')
     }
-    let [userInfo, userRole, permissions,isAdmin] = await Promise.all([userService.getUserById(user.userId), userService.getUserRole(user.userId), userService.getUserPermission(user.userId),userService.isAdmin(user.userId)])
+    let [userInfo, userRole, permissions, isAdmin] = await Promise.all([userService.getUserById(user.userId), userService.getUserRole(user.userId), userService.getUserPermission(user.userId), userService.isAdmin(user.userId)])
     if (!userInfo) {
         return responseTemplate.businessError(ctx, '获取用户信息失败!')
     }
@@ -14,7 +21,7 @@ export let getUserInfo = async (ctx) => {
         userName: userInfo.name,
         userRole: userRole,
         userPermission: permissions,
-        isAdmin:isAdmin?1:0,
+        isAdmin: isAdmin ? 1 : 0,
         avatarUrl: 'https://api.adorable.io/avatars/85/abott@adorable.png'
     })
 }
@@ -48,7 +55,7 @@ export let delUsers = async (ctx) => {
 
 export let saveUser = async (ctx) => {
     let func = ctx.request.body
-    if(func.name==""){
+    if (func.name == "") {
         return responseTemplate.businessError(ctx, "账号不能为空!")
     }
     let result = await userService.saveUser(func)

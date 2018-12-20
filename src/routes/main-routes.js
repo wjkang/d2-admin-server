@@ -40,6 +40,7 @@ router
 
   .get('/user/pagedlist', PermissionCheck({ permission: ["user_view", "user_role_view"] }), controllers.user.getUserPagedList)
   .get('/user/info', controllers.user.getUserInfo)
+  .get('/user/:id', controllers.user.getUser)
   .del('/user/del', PermissionCheck({ permission: ["user_del"] }), controllers.user.delUser)
   .del('/user/batchdel', PermissionCheck({ permission: ["user_del"] }), controllers.user.delUsers)
   .post('/user/save', PermissionCheck({ permission: ["user_edit"] }), controllers.user.saveUser)

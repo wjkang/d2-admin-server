@@ -2,7 +2,6 @@ import roleService from '../services/roleService'
 import menuService from '../services/memuService'
 import * as responseTemplate from '../lib/responseTemplate'
 export let getRole = async (ctx) => {
-    console.log(ctx.params)
     let id = ctx.params.id
     let role = await roleService.getRole(id)
     if (!role) {

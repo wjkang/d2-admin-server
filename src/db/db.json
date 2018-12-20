@@ -13,13 +13,17 @@
       "name": "test",
       "trueName": "测试",
       "password": "123456",
-      "id": "54a3488f-3c94-489e-bcd0-3f2631991f5e"
+      "id": "54a3488f-3c94-489e-bcd0-3f2631991f5e",
+      "phone": "4",
+      "email": "4"
     },
     {
       "name": "website_admin",
       "trueName": "网站模块管理员A",
       "password": "123456",
-      "id": "92e6b921-d820-4ea6-9b57-95b1378c961e"
+      "id": "92e6b921-d820-4ea6-9b57-95b1378c961e",
+      "phone": "1",
+      "email": "1"
     }
   ],
   "admin": [
@@ -568,7 +572,7 @@
       "code": "role_website_admin",
       "description": "网站模块管理员1213",
       "id": "9fc587ff-3543-4f58-93ab-15f64d3d19e5",
-      "isAdd": 2,
+      "isAdd": 1,
       "__index": 1
     }
   ],
@@ -592,6 +596,10 @@
     {
       "userId": "54a3488f-3c94-489e-bcd0-3f2631991f5e",
       "roleId": "9fc587ff-3543-4f58-93ab-15f64d3d19e5"
+    },
+    {
+      "userId": "54a3488f-3c94-489e-bcd0-3f2631991f5e",
+      "roleId": "40af8f42-3b18-410c-9fc2-aba8158e92d7"
     }
   ],
   "permission": [
