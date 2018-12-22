@@ -38,6 +38,7 @@ export let getUserPagedList = async (ctx) => {
 
 export let delUser = async (ctx) => {
     let id = ctx.query.id
+    console.log(id)
     let result = await userService.delUser(id)
     if (!result.success) {
         return responseTemplate.businessError(ctx, result.msg)
