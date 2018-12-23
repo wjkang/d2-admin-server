@@ -1,5 +1,75 @@
 import userService from '../services/userService'
+import menuService from '../services/memuService'
+import routeService from '../services/routeService'
 import * as responseTemplate from '../lib/responseTemplate'
+let formatAccessMenus = (menus) => {
+    let f = (item, children) => {
+        item.children = []
+        for (let child of children) {
+            let itemChild = {
+                title: child.title,
+                path: child.path,
+                icon: child.icon
+            }
+            if (child.children && child.children.length > 0) {
+                f(itemChild, child.children)
+            }
+            item.children.push(itemChild)
+        }
+    }
+    let list = []
+    for (let menu of menus) {
+        let item = {
+            title: menu.title,
+            path: menu.path,
+            icon: menu.icon
+        }
+        if (menu.children && menu.children.length > 0) {
+            f(item, menu.children)
+        }
+        list.push(item)
+    }
+    return list
+}
+let formatAccessRoutes = (routes) => {
+    let f = (item, children) => {
+        item.children = []
+        for (let child of children) {
+            let itemChild = {
+                name: child.name,
+                path: child.path,
+                component: child.component,
+                componentPath: child.componentPath,
+                meta: {
+                    title: child.title,
+                    cache: child.cache
+                }
+            }
+            if (child.children && child.children.length > 0) {
+                f(itemChild, child.children)
+            }
+            item.children.push(itemChild)
+        }
+    }
+    let list = []
+    for (let route of routes) {
+        let item = {
+            name: route.name,
+            path: route.path,
+            component: route.component,
+            componentPath: route.componentPath,
+            meta: {
+                title: route.title,
+                cache: route.cache
+            }
+        }
+        if (route.children && route.children.length > 0) {
+            f(item, route.children)
+        }
+        list.push(item)
+    }
+    return list
+}
 export let getUser = async (ctx) => {
     let id = ctx.params.id
     let user = await userService.getUserById(id)
@@ -13,14 +83,29 @@ export let getUserInfo = async (ctx) => {
     if (!user || !user.userId) {
         return responseTemplate.businessError(ctx, '获取用户信息失败!')
     }
-    let [userInfo, userRole, permissions, isAdmin] = await Promise.all([userService.getUserById(user.userId), userService.getUserRole(user.userId), userService.getUserPermission(user.userId), userService.isAdmin(user.userId)])
+    let [userInfo,
+        userRole,
+        permissions,
+        accessMenus,
+        accessRoutes,
+        isAdmin
+    ] = await Promise.all([
+        userService.getUserById(user.userId),
+        userService.getUserRole(user.userId),
+        userService.getUserPermission(user.userId),
+        menuService.getAccessMenuList(user.userId),
+        routeService.getAccessRouteList(user.userId),
+        userService.isAdmin(user.userId)
+    ])
     if (!userInfo) {
         return responseTemplate.businessError(ctx, '获取用户信息失败!')
     }
     return responseTemplate.success(ctx, {
         userName: userInfo.name,
-        userRole: userRole,
-        userPermission: permissions,
+        userRoles: userRole,
+        userPermissions: permissions,
+        accessMenus: formatAccessMenus(accessMenus),
+        accessRoutes: formatAccessRoutes(accessRoutes),
         isAdmin: isAdmin ? 1 : 0,
         avatarUrl: 'https://api.adorable.io/avatars/85/abott@adorable.png'
     })

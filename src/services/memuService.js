@@ -16,7 +16,7 @@ let buildMenu = (parentMenu, menuList) => {
 let buildAccessMenu = (parentMenu, menuList, userPermission) => {
     parentMenu.children = []
     let children = menuList.filter((item) => {
-        return item.parentId == parentMenu.id && (!item.functionCode || userPermission.indexOf(item.functionCode) > -1)
+        return item.parentId == parentMenu.id && (!item.permission || userPermission.indexOf(item.permission) > -1)
     })
     //父级没有权限访问，子级也不能访问
     for (let menu of children) {
@@ -59,7 +59,7 @@ let menuService = {
     },
     getAccessMenuList: async (userId) => {
         let db = await model.init(context)
-        let menuList = JSON.parse(JSON.stringify(db.value()))
+        let menuList = JSON.parse(JSON.stringify(db.filter({ type: 1 }).value()))
         menuList = _.sortBy(menuList, ["sort"])
         let parentMenuList = menuList.filter((item) => {
             return item.parentId == 0 && !item.isLock
@@ -129,8 +129,8 @@ let menuService = {
     },
     delMenu: async (menuId) => {
         let db = await model.init(context)
-        let child= db.find({ parentId: menuId }).value()
-        if(child){
+        let child = db.find({ parentId: menuId }).value()
+        if (child) {
             return {
                 success: false,
                 msg: "请先删除子菜单"
@@ -141,6 +141,14 @@ let menuService = {
             success: true,
             msg: ""
         }
+    },
+    getMenuListByIds: async (ids) => {
+        let db = await model.init(context)
+        let list = db.value()
+        let menuList = list.filter(s => {
+            return ids.indexOf(s.id) > -1
+        })
+        return menuList
     }
 }
 module.exports = menuService

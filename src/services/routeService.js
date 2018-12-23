@@ -1,4 +1,5 @@
 import model from '../models/baseModel'
+import userService from './userService'
 import _ from 'lodash'
 const context = 'route'
 let buildChildren = (parent, list) => {
@@ -151,5 +152,59 @@ module.exports = {
             success: true,
             msg: ""
         }
+    },
+    getAccessRouteList: async (userId) => {
+        let db = await model.init(context)
+        let routeList = JSON.parse(JSON.stringify(db.value()))
+        routeList = _.sortBy(routeList, ["sort"])
+        let parentRouteList = routeList.filter((item) => {
+            return item.parentId == 0 && !item.isLock
+        })
+        let isAdmin = await userService.isAdmin(userId)
+        let userPermission = await userService.getUserPermission(userId)
+        if (isAdmin) {
+            for (let route of parentRouteList) {
+                buildRoute(route, routeList)
+            }
+        } else {
+            for (let route of parentRouteList) {
+                buildAccessRoute(route, routeList, userPermission)
+            }
+        }
+        checkAccssRoute(parentRouteList, routeList)
+        return parentRouteList
+    },
+}
+let buildRoute = (parentRoute, routeList) => {
+    parentRoute.children = []
+    let children = routeList.filter((item) => {
+        return item.parentId == parentRoute.id
+    })
+    for (let route of children) {
+        buildRoute(route, routeList)
     }
+    parentRoute.children.push(...children)
+}
+let buildAccessRoute = (parentRoute, routeList, userPermission) => {
+    parentRoute.children = []
+    let children = routeList.filter((item) => {
+        return item.parentId == parentMenu.id && (!item.permission || userPermission.indexOf(item.permission) > -1)
+    })
+    //父级没有权限访问，子级也不能访问
+    for (let route of children) {
+        buildAccessRoute(route, routeList, userPermission)
+    }
+    parentRoute.children.push(...children)
+}
+let checkAccssRoute = (accessRouteList, routeList) => {
+    for (let item of accessRouteList) {
+        if (item.children) {
+            checkAccssRoute(item.children, routeList)
+        }
+    }
+    _.remove(accessRouteList, (item) => {
+        return item.children.length == 0 && routeList.some(s => {
+            return s.parentId == item.id
+        })
+    });
 }

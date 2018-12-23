@@ -43,7 +43,7 @@
       "id": "52500348-50f0-4327-a898-9e4b9893f1a9",
       "parentId": "2bf39892-f047-44b1-88d3-ccd7ea5c8c45",
       "title": "系统设置",
-      "icon": "folder-o",
+      "icon": "cogs",
       "sort": "1",
       "type": 1
     },
@@ -52,7 +52,7 @@
       "parentId": "52500348-50f0-4327-a898-9e4b9893f1a9",
       "title": "菜单管理",
       "path": "/system/menu",
-      "icon": "folder-o",
+      "icon": "th-list",
       "sort": "1",
       "type": 1,
       "permission": "P_VIEW_MENUMANAGEMENU"
@@ -86,7 +86,8 @@
       "title": "路由管理",
       "type": 1,
       "permission": "P_VIEW_ROLEMANAGEMENU",
-      "sort": "2"
+      "sort": "2",
+      "icon": "share-alt-square"
     },
     {
       "id": "2b453777-ddb0-4806-8ab0-4ec56167cdb3",
@@ -101,7 +102,8 @@
       "title": "角色管理",
       "path": "/system/role",
       "type": 1,
-      "sort": "3"
+      "sort": "3",
+      "icon": "users"
     },
     {
       "id": "d0d47bda-ab26-4909-a7f2-74bc2591a357",
@@ -109,7 +111,8 @@
       "title": "用户管理",
       "path": "/system/user",
       "sort": "4",
-      "type": 1
+      "type": 1,
+      "icon": "user"
     },
     {
       "id": "85bfdc38-fca4-4703-ad22-2cba711fc42a",
@@ -117,7 +120,8 @@
       "title": "接口管理",
       "path": "/system/interface",
       "type": 1,
-      "sort": "5"
+      "sort": "5",
+      "icon": "paper-plane"
     },
     {
       "id": "5e5b0453-cb24-4a8f-89ef-360922cecba5",
@@ -142,7 +146,8 @@
       "parentId": "2bf39892-f047-44b1-88d3-ccd7ea5c8c45",
       "title": "组织架构",
       "sort": "2",
-      "type": 1
+      "type": 1,
+      "icon": "pie-chart"
     },
     {
       "id": "dc5667cf-85a8-446e-8e69-354a684a762a",
@@ -150,14 +155,16 @@
       "title": "部门管理",
       "type": 1,
       "isLock": false,
-      "sort": "1"
+      "sort": "1",
+      "icon": "html5"
     },
     {
       "id": "0fda8037-61df-4a1c-8f9b-18f287d51049",
       "parentId": "18c7a1e3-3c69-4242-afd7-6f54bfdce271",
       "title": "职位管理",
       "sort": "2",
-      "type": 1
+      "type": 1,
+      "icon": "opencart"
     },
     {
       "id": "6a0c4206-a78c-4459-bd36-3c8972b7bb53",
@@ -209,6 +216,37 @@
       "componentPath": "pages/sys/route/index",
       "sort": "3",
       "cache": true
+    },
+    {
+      "id": "67a76a8f-c765-4015-bebd-03edc3170e63",
+      "parentId": "3af738f0-0792-4f34-aae9-3339d0ab12a7",
+      "name": "RolePage",
+      "title": "角色管理",
+      "path": "/system/role",
+      "component": "role",
+      "sort": "3",
+      "cache": true,
+      "componentPath": "pages/sys/role/index"
+    },
+    {
+      "id": "58c5bc63-dfdc-413c-9bd6-b827ef06203e",
+      "parentId": "3af738f0-0792-4f34-aae9-3339d0ab12a7",
+      "componentPath": "pages/sys/user/index",
+      "sort": "4",
+      "cache": true,
+      "component": "user",
+      "path": "/system/user",
+      "title": "用户管理",
+      "name": "UserPage"
+    },
+    {
+      "id": "d8808450-aa31-4a4a-817d-e49c8eee983b",
+      "parentId": "3af738f0-0792-4f34-aae9-3339d0ab12a7",
+      "name": "InterfacePage",
+      "title": "接口管理",
+      "path": "/system/interface",
+      "component": "interface",
+      "sort": "5"
     }
   ],
   "function": [],

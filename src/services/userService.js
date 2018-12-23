@@ -1,10 +1,10 @@
 import _ from 'lodash'
 import model from '../models/baseModel'
 import roleService from './roleService'
-import functionService from './functionService'
 const context = 'user'
 const adminContext = 'admin'
 const roleUserContext = 'roleUser'
+const menuContext = 'menu'
 module.exports = {
     getUserByNameAndPwd: async (name, pwd) => {
         let db = await model.init(context)
@@ -146,10 +146,15 @@ module.exports = {
         let functionIds = roleFunctions.map(s => {
             return s.functionId
         })
-        let functionList = await functionService.getFunctionListByIds(functionIds)
-        let functionCodeList = functionList.map(s => {
-            return s.code
+        let menudb = await model.init(menuContext)
+        let menuList = menudb.value()
+        menuList = menuList.filter(s => {
+            return functionIds.indexOf(s.id) > -1
         })
+        let functionCodeList = menuList.map(s => {
+            return s.permission
+        })
+        functionCodeList = functionCodeList.filter(s => s)
         return functionCodeList
     },
     isAdmin: async (userId) => {
