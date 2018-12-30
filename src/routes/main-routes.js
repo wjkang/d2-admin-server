@@ -46,6 +46,12 @@ router
   .post('/user/save', PermissionCheck({ permission: ["user_edit"] }), controllers.user.saveUser)
   .post('/user/editroleuser', PermissionCheck({ permission: ["role_user_edit", "user_role_edit"] }), controllers.user.editRoleUser)
 
+  .get('/interface/paged', controllers.interface.getInterfacePagedList)
+  .get('/interface/:id', controllers.interface.getInterface)
+  .del('/interface/del', controllers.interface.delInterface)
+  .del('/interface/batchdel', controllers.interface.delInterfaces)
+  .post('/interface/save', controllers.interface.saveInterface)
+
   .get('/requestlog/pagedlist', controllers.requestlog.getRequestLogPagedList)
 
   .get('/post/pagedlist', PermissionCheck({ permission: ["post_view"] }), controllers.post.getPostPagedList)

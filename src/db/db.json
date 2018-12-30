@@ -249,6 +249,21 @@
       "sort": "5"
     }
   ],
+  "interface": [
+    {
+      "name": "用户登录",
+      "path": "/auth/login",
+      "method": "post",
+      "description": "用户登录",
+      "id": "4662e940-ebae-4424-8a74-2c67ce408d3e"
+    },
+    {
+      "name": "1",
+      "path": "1",
+      "method": "1",
+      "id": "839d5473-4743-48c2-91c6-d45523b5cb29"
+    }
+  ],
   "function": [],
   "role": [],
   "roleUser": [],

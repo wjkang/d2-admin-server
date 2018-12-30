@@ -5,48 +5,32 @@ var Random = Mock.Random
 
 //必须包含字段id
 export default {
-    name: "route",
-    Name: "Route",
+    name: "interface",
+    Name: "Interface",
     properties: [
         {
             key: "id",
             title: "id"
         },
         {
-            key: "parentId",
-            title: "parentId"
-        },
-        {
             key: "name",
-            title: "name"
+            title: "名称"
         },
         {
             key: "path",
-            title: "path"
+            title: "接口地址"
         },
         {
-            key: "title",
-            title: "标题"
+            key: "method",
+            title: "接口方法"
         },
         {
-            key: "component",
-            title: "组件"
+            key: "isLocked",
+            title: "是否锁定"
         },
         {
-            key: "componentPath",
-            title: "组件路径"
-        },
-        {
-            key: "cache",
-            title: "keepAlive"
-        },
-        {
-            key: "isLock",
-            title: "isLock"
-        },
-        {
-            key: "sort",
-            title: "sort"
+            key: "description",
+            title: "接口描述"
         }
     ],
     buildMockData: function () {//不需要生成设为false

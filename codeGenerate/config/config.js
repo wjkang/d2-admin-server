@@ -1,6 +1,6 @@
 export default {
     ApiServer:'http://localhost:3000',
-    ServerRootPath:'D:/GitHubProject/d2-admin-server',
+    ServerRootPath:'G:/GitHubProject/d2-admin-server',
     //server
     RouteRelativePath:'/src/routes/',
     ControllerRelativePath:'/src/controllers/',
