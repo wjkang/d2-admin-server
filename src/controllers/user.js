@@ -109,7 +109,7 @@ export let getUserInfo = async (ctx) => {
         userPermissions: permissions,
         accessMenus: formatAccessMenus(accessMenus),
         accessRoutes: formatAccessRoutes(accessRoutes),
-        accessInterfaces: accessInterfaces.map(s => { return { path: s.path, mathod: s.method } }),
+        accessInterfaces: accessInterfaces.map(s => { return { path: s.path, method: s.method } }),
         isAdmin: isAdmin ? 1 : 0,
         avatarUrl: 'https://api.adorable.io/avatars/85/abott@adorable.png'
     })

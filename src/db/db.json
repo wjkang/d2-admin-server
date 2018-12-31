@@ -255,9 +255,43 @@
       "method": "post",
       "description": "用户登录",
       "id": "4662e940-ebae-4424-8a74-2c67ce408d3e"
+    },
+    {
+      "name": "获取菜单",
+      "path": "/menu/:id",
+      "method": "get",
+      "description": "根据id获取菜单",
+      "id": "c6567a47-0382-4eb9-852b-3db2c8be9251"
+    },
+    {
+      "name": "获取菜单列表",
+      "path": "/menu",
+      "method": "get",
+      "description": "获取菜单列表",
+      "id": "23c892ed-76c6-4bdb-9240-4618b3fc4399"
+    },
+    {
+      "name": "提交菜单",
+      "path": "/menu/save",
+      "method": "post",
+      "description": "新增或更新菜单",
+      "id": "8dba087e-ba42-4220-a036-0de4adc0f585"
     }
   ],
-  "functionInterface": [],
+  "functionInterface": [
+    {
+      "functionId": "34943e8f-5e57-4038-bd2f-6c13e3c5f168",
+      "interfaceId": "c6567a47-0382-4eb9-852b-3db2c8be9251"
+    },
+    {
+      "functionId": "34943e8f-5e57-4038-bd2f-6c13e3c5f168",
+      "interfaceId": "23c892ed-76c6-4bdb-9240-4618b3fc4399"
+    },
+    {
+      "functionId": "3423218d-886c-4fb7-944d-42afe4c03076",
+      "interfaceId": "8dba087e-ba42-4220-a036-0de4adc0f585"
+    }
+  ],
   "role": [
     {
       "name": "1",
@@ -276,12 +310,17 @@
     {
       "roleId": "6db7bf60-1cbc-404b-9894-4dd6f4a02959",
       "functionId": "c2578794-328c-4f0f-bbba-289ebdace7f1",
-      "id": "e55b4887-18ba-49fa-a69e-8cc4c3ba77f8"
+      "id": "fb154a9a-20cc-4cec-be91-22cd4c88aa0f"
     },
     {
       "roleId": "6db7bf60-1cbc-404b-9894-4dd6f4a02959",
       "functionId": "34943e8f-5e57-4038-bd2f-6c13e3c5f168",
-      "id": "47fa475d-b1b3-44b9-b70c-aa0e6b79031b"
+      "id": "3d973bd3-3c16-4603-a45b-137240558b0e"
+    },
+    {
+      "roleId": "6db7bf60-1cbc-404b-9894-4dd6f4a02959",
+      "functionId": "3423218d-886c-4fb7-944d-42afe4c03076",
+      "id": "403fc375-2c85-44be-8e6a-122200ae3fdd"
     }
   ],
   "function": [],
