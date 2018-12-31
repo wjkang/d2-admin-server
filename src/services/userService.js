@@ -157,6 +157,23 @@ module.exports = {
         functionCodeList = functionCodeList.filter(s => s)
         return functionCodeList
     },
+    getUserFunctions: async (userId) => {
+        let roleUserDb = await model.init(roleUserContext)
+        let roleUserList = roleUserDb.filter({ userId: userId }).value()
+        let roleIdList = roleUserList.map(s => {
+            return s.roleId
+        })
+        let roleFunctions = await roleService.getRoleFuntionsByRoleIds(roleIdList)
+        let functionIds = roleFunctions.map(s => {
+            return s.functionId
+        })
+        let menudb = await model.init(menuContext)
+        let menuList = menudb.value()
+        let functionList = menuList.filter(s => {
+            return functionIds.indexOf(s.id) > -1
+        })
+        return functionList;
+    },
     isAdmin: async (userId) => {
         let adminDb = await model.init(adminContext)
         let admin = adminDb.value()

@@ -1,6 +1,7 @@
 import userService from '../services/userService'
 import menuService from '../services/memuService'
 import routeService from '../services/routeService'
+import interfaceService from '../services/interfaceService'
 import * as responseTemplate from '../lib/responseTemplate'
 let formatAccessMenus = (menus) => {
     let f = (item, children) => {
@@ -88,6 +89,7 @@ export let getUserInfo = async (ctx) => {
         permissions,
         accessMenus,
         accessRoutes,
+        accessInterfaces,
         isAdmin
     ] = await Promise.all([
         userService.getUserById(user.userId),
@@ -95,6 +97,7 @@ export let getUserInfo = async (ctx) => {
         userService.getUserPermission(user.userId),
         menuService.getAccessMenuList(user.userId),
         routeService.getAccessRouteList(user.userId),
+        interfaceService.getAccessInterfaceList(user.userId),
         userService.isAdmin(user.userId)
     ])
     if (!userInfo) {
@@ -106,6 +109,7 @@ export let getUserInfo = async (ctx) => {
         userPermissions: permissions,
         accessMenus: formatAccessMenus(accessMenus),
         accessRoutes: formatAccessRoutes(accessRoutes),
+        accessInterfaces: accessInterfaces.map(s => { return { path: s.path, mathod: s.method } }),
         isAdmin: isAdmin ? 1 : 0,
         avatarUrl: 'https://api.adorable.io/avatars/85/abott@adorable.png'
     })

@@ -254,21 +254,47 @@
       "path": "/auth/login",
       "method": "post",
       "description": "用户登录",
-      "id": "4662e940-ebae-4424-8a74-2c67ce408d3e",
-      "isAdd": 2
+      "id": "4662e940-ebae-4424-8a74-2c67ce408d3e"
     },
     {
       "name": "1",
       "path": "1",
       "method": "1",
-      "id": "839d5473-4743-48c2-91c6-d45523b5cb29",
-      "isAdd": 1
+      "id": "839d5473-4743-48c2-91c6-d45523b5cb29"
     }
   ],
-  "functionInterface": [],
-  "role": [],
-  "roleUser": [],
-  "permission": [],
+  "functionInterface": [
+    {
+      "functionId": "34943e8f-5e57-4038-bd2f-6c13e3c5f168",
+      "interfaceId": "839d5473-4743-48c2-91c6-d45523b5cb29"
+    }
+  ],
+  "role": [
+    {
+      "name": "1",
+      "code": "1",
+      "description": "1",
+      "id": "6db7bf60-1cbc-404b-9894-4dd6f4a02959"
+    }
+  ],
+  "roleUser": [
+    {
+      "userId": "1",
+      "roleId": "6db7bf60-1cbc-404b-9894-4dd6f4a02959"
+    }
+  ],
+  "permission": [
+    {
+      "roleId": "6db7bf60-1cbc-404b-9894-4dd6f4a02959",
+      "functionId": "c2578794-328c-4f0f-bbba-289ebdace7f1",
+      "id": "e55b4887-18ba-49fa-a69e-8cc4c3ba77f8"
+    },
+    {
+      "roleId": "6db7bf60-1cbc-404b-9894-4dd6f4a02959",
+      "functionId": "34943e8f-5e57-4038-bd2f-6c13e3c5f168",
+      "id": "47fa475d-b1b3-44b9-b70c-aa0e6b79031b"
+    }
+  ],
   "function": [],
   "post": [],
   "token": []

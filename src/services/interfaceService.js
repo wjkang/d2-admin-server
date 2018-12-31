@@ -1,4 +1,5 @@
 import model from '../models/baseModel'
+import userService from '../services/userService'
 import _ from 'lodash'
 const context = 'interface'
 const functionInterfaceContext = 'functionInterface'
@@ -11,7 +12,7 @@ module.exports = {
     getInterfacePagedList: async (pageIndex, pageSize, sortBy, descending, filter) => {
         let db = await model.init(context)
         let interfaceList = db.value()
-        let resultList = interfaceList
+        let resultList = JSON.parse(JSON.stringify(interfaceList))
         if (filter.id) {
             resultList = _.filter(resultList, (o) => {
                 return o.id.indexOf(filter.id) > -1
@@ -111,5 +112,21 @@ module.exports = {
         } else {
             await functionInterfaceDb.remove({ functionId: functionInterface.functionId, interfaceId: functionInterface.interfaceId }).write()
         }
+    },
+    getAccessInterfaceList: async (userId) => {
+        let functionInterfaceDb = await model.init(functionInterfaceContext)
+        let db = await model.init(context)
+        let userFunctions = await userService.getUserFunctions(userId)
+        let userFunctionIds = userFunctions.map(s => s.id)
+        let functionInterfaceList = functionInterfaceDb.value()
+        let userFunctionInterfaceList = functionInterfaceList.filter(s => {
+            return userFunctionIds.indexOf(s.functionId) > -1
+        })
+        let userInterfaceIdList = userFunctionInterfaceList.map(s => s.interfaceId)
+        let interfaceIdList = db.value()
+        let userInterfaceList = interfaceIdList.filter(s => {
+            return userInterfaceIdList.indexOf(s.id) > -1
+        })
+        return userInterfaceList
     }
 }
