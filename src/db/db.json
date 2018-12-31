@@ -255,20 +255,9 @@
       "method": "post",
       "description": "用户登录",
       "id": "4662e940-ebae-4424-8a74-2c67ce408d3e"
-    },
-    {
-      "name": "1",
-      "path": "1",
-      "method": "1",
-      "id": "839d5473-4743-48c2-91c6-d45523b5cb29"
     }
   ],
-  "functionInterface": [
-    {
-      "functionId": "34943e8f-5e57-4038-bd2f-6c13e3c5f168",
-      "interfaceId": "839d5473-4743-48c2-91c6-d45523b5cb29"
-    }
-  ],
+  "functionInterface": [],
   "role": [
     {
       "name": "1",
