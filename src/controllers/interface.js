@@ -16,19 +16,13 @@ export let getInterfacePagedList = async (ctx, next) => {
     let sortBy = ctx.query.sortBy
     let descending = ctx.query.descending
     let filter = {
-
         id: ctx.query.id,
-
         name: ctx.query.name,
-
         path: ctx.query.path,
-
         method: ctx.query.method,
-
         isLocked: ctx.query.isLocked,
-
         description: ctx.query.description,
-
+        functionId: ctx.query.functionId
     }
     let pagedList = await interfaceService.getInterfacePagedList(pageIndex, pageSize, sortBy, descending, filter)
     return responseTemplate.success(ctx, pagedList)
@@ -49,22 +43,12 @@ export let delInterfaces = async (ctx) => {
 
 export let saveInterface = async (ctx) => {
     let entity = ctx.request.body
-
-
-
-
     if (entity.name == "") {
         return responseTemplate.businessError(ctx, "名称不能为空!")
     }
-
-
-
     if (entity.path == "") {
         return responseTemplate.businessError(ctx, "接口地址不能为空!")
     }
-
-
-
     if (entity.method == "") {
         return responseTemplate.businessError(ctx, "接口方法不能为空!")
     }
@@ -72,5 +56,10 @@ export let saveInterface = async (ctx) => {
     if (!result.success) {
         return responseTemplate.businessError(ctx, result.msg)
     }
+    return responseTemplate.success(ctx, null)
+}
+export let relateInterface = async (ctx) => {
+    let functionInterface = ctx.request.body
+    await interfaceService.relate(functionInterface)
     return responseTemplate.success(ctx, null)
 }

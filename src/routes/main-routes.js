@@ -51,6 +51,7 @@ router
   .del('/interface/del', controllers.interface.delInterface)
   .del('/interface/batchdel', controllers.interface.delInterfaces)
   .post('/interface/save', controllers.interface.saveInterface)
+  .post('/interface/relate', controllers.interface.relateInterface)
 
   .get('/requestlog/pagedlist', controllers.requestlog.getRequestLogPagedList)
 

@@ -1,6 +1,7 @@
 import model from '../models/baseModel'
 import _ from 'lodash'
 const context = 'interface'
+const functionInterfaceContext = 'functionInterface'
 module.exports = {
     getInterface: async (id) => {
         let db = await model.init(context)
@@ -11,43 +12,52 @@ module.exports = {
         let db = await model.init(context)
         let interfaceList = db.value()
         let resultList = interfaceList
-
         if (filter.id) {
             resultList = _.filter(resultList, (o) => {
                 return o.id.indexOf(filter.id) > -1
             });
         }
-
         if (filter.name) {
             resultList = _.filter(resultList, (o) => {
                 return o.name.indexOf(filter.name) > -1
             });
         }
-
         if (filter.path) {
             resultList = _.filter(resultList, (o) => {
                 return o.path.indexOf(filter.path) > -1
             });
         }
-
         if (filter.method) {
             resultList = _.filter(resultList, (o) => {
                 return o.method.indexOf(filter.method) > -1
             });
         }
-
         if (filter.isLocked) {
             resultList = _.filter(resultList, (o) => {
                 return o.isLocked.indexOf(filter.isLocked) > -1
             });
         }
-
         if (filter.description) {
             resultList = _.filter(resultList, (o) => {
                 return o.description.indexOf(filter.description) > -1
             });
         }
-
+        if (filter.functionId) {
+            let functionInterfaceDb = await model.init(functionInterfaceContext)
+            let functionInterfaceList = functionInterfaceDb.filter({ functionId: filter.functionId }).value()
+            let interfaceIdList = functionInterfaceList.map(s => {
+                return s.interfaceId
+            })
+            resultList = _.map(resultList, (item) => {
+                if (interfaceIdList.indexOf(item.id) > -1) {
+                    item.isAdd = 1
+                } else {
+                    item.isAdd = 2
+                }
+                return item
+            })
+            sortBy = "isAdd"
+        }
         let totalCount = resultList.length
         if (sortBy) {
             resultList = _.sortBy(resultList, [sortBy])
@@ -63,7 +73,6 @@ module.exports = {
             let end = pageIndex * pageSize
             resultList = _.slice(resultList, start, end)
         }
-
         return {
             totalCount: totalCount,
             rows: resultList
@@ -93,6 +102,14 @@ module.exports = {
         return {
             success: true,
             msg: ""
+        }
+    },
+    relate: async (functionInterface) => {
+        let functionInterfaceDb = await model.init(functionInterfaceContext)
+        if (functionInterface.action == 1) {
+            await functionInterfaceDb.push({ functionId: functionInterface.functionId, interfaceId: functionInterface.interfaceId }).write()
+        } else {
+            await functionInterfaceDb.remove({ functionId: functionInterface.functionId, interfaceId: functionInterface.interfaceId }).write()
         }
     }
 }

@@ -28,7 +28,6 @@
   "admin": [
     "1"
   ],
-  "token": [],
   "menu": [
     {
       "id": "2bf39892-f047-44b1-88d3-ccd7ea5c8c45",
@@ -255,18 +254,22 @@
       "path": "/auth/login",
       "method": "post",
       "description": "用户登录",
-      "id": "4662e940-ebae-4424-8a74-2c67ce408d3e"
+      "id": "4662e940-ebae-4424-8a74-2c67ce408d3e",
+      "isAdd": 2
     },
     {
       "name": "1",
       "path": "1",
       "method": "1",
-      "id": "839d5473-4743-48c2-91c6-d45523b5cb29"
+      "id": "839d5473-4743-48c2-91c6-d45523b5cb29",
+      "isAdd": 1
     }
   ],
-  "function": [],
+  "functionInterface": [],
   "role": [],
   "roleUser": [],
   "permission": [],
-  "post": []
+  "function": [],
+  "post": [],
+  "token": []
 }
