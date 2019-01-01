@@ -276,6 +276,181 @@
       "method": "post",
       "description": "新增或更新菜单",
       "id": "8dba087e-ba42-4220-a036-0de4adc0f585"
+    },
+    {
+      "name": "删除菜单",
+      "path": "/menu/:id",
+      "method": "delete",
+      "description": "根据id删除菜单",
+      "id": "6be0b030-1d42-4230-aed0-5cc7ca8e53df"
+    },
+    {
+      "name": "获取路由列表",
+      "path": "/route",
+      "method": "get",
+      "description": "获取路由列表",
+      "id": "f42e8101-af1e-4717-82aa-a9d620b65021"
+    },
+    {
+      "name": "获取路由",
+      "path": "/route/:id",
+      "method": "get",
+      "description": "根据id获取路由",
+      "id": "53b58c16-b9fb-4ea0-bb65-0bb4cfd96293"
+    },
+    {
+      "name": "提交路由",
+      "path": "/route/save",
+      "method": "post",
+      "description": "新增或更新路由",
+      "id": "ffef90da-dab5-4177-81ae-1a4d8e70b0c8"
+    },
+    {
+      "name": "删除路由",
+      "path": "/route/:id",
+      "method": "delete",
+      "description": "根本id删除路由",
+      "id": "cee27c96-c02c-409d-b446-1de2e55e2bf6"
+    },
+    {
+      "name": "获取角色",
+      "path": "/role/:id",
+      "method": "get",
+      "description": "根据id获取角色",
+      "id": "02ce362f-1f04-4386-99c1-ef7a1bcf71fe"
+    },
+    {
+      "name": "分页获取角色",
+      "path": "/role/pagedlist",
+      "method": "get",
+      "description": "分页的方式获取角色数据，支持排序",
+      "id": "90a1d0c6-22e5-4743-b39c-9f6e643b75d4"
+    },
+    {
+      "name": "删除角色",
+      "path": "/role/del",
+      "method": "delete",
+      "description": "根据id删除角色",
+      "id": "873aaf0d-6f67-4c74-8dde-7dba8c524921"
+    },
+    {
+      "name": "批量删除角色",
+      "path": "/role/batchdel",
+      "method": "delete",
+      "description": "批量删除角色",
+      "id": "0c229c5e-30d7-42c3-841a-73c4ba210a06"
+    },
+    {
+      "name": "提交角色",
+      "path": "/role/save",
+      "method": "post",
+      "description": "新增或更新角色",
+      "id": "3d0a2d40-89d1-4416-8354-05849276dccd"
+    },
+    {
+      "name": "获取角色功能权限",
+      "path": "/role/getpermissions/:roleid",
+      "method": "get",
+      "description": "获取角色功能权限",
+      "id": "6eb4cf01-45d1-432c-83ac-d9eb72c0c88e"
+    },
+    {
+      "name": "保存角色功能权限",
+      "path": "/role/savepermission",
+      "method": "post",
+      "description": "保存角色功能权限",
+      "id": "07ff0d6a-78a6-4cd3-ba76-b4959a0c641a"
+    },
+    {
+      "name": "获取用户",
+      "path": "/user/:id",
+      "method": "get",
+      "description": "获取用户",
+      "id": "020a75ef-ea43-4435-9a16-cb09fb79dc8b"
+    },
+    {
+      "name": "分页获取用户",
+      "path": "/user/pagedlist",
+      "method": "get",
+      "description": "分页获取用户",
+      "id": "93c064e8-baf4-4f03-80ef-fa1230911213"
+    },
+    {
+      "name": "提交用户",
+      "path": "/user/save",
+      "method": "post",
+      "description": "新增或更新用户",
+      "id": "31373f0b-0050-42d4-80b9-48dc3735f213"
+    },
+    {
+      "name": "删除用户",
+      "path": "/user/del",
+      "method": "delete",
+      "description": "删除用户",
+      "id": "80eb294a-9919-4341-b1c0-ef94462bfa9f"
+    },
+    {
+      "name": "批量删除用户",
+      "path": "/user/batchdel",
+      "method": "delete",
+      "description": "批量删除用户",
+      "id": "6cf44f79-726c-4655-843a-b05d8ed5ebd5"
+    },
+    {
+      "name": "关联角色用户",
+      "path": "/user/editroleuser",
+      "method": "post",
+      "description": "关联或取消关联",
+      "id": "61cf07fb-bd28-46f0-88d1-b96d3d7d0556"
+    },
+    {
+      "name": "获取用户权限信息",
+      "path": "/user/info",
+      "method": "get",
+      "description": "获取用户权限信息",
+      "id": "b49d6801-a037-46f2-bdc9-e175d64e6027"
+    },
+    {
+      "name": "获取接口",
+      "path": "/interface/:id",
+      "method": "get",
+      "description": "根据id获取接口",
+      "id": "87d9908b-2876-4f50-ad80-7fd4fef34456"
+    },
+    {
+      "name": "分页获取接口",
+      "path": "/interface/paged",
+      "method": "get",
+      "description": "分页获取接口",
+      "id": "72ce9b95-8b49-42f5-96f9-488f42f84da4"
+    },
+    {
+      "name": "提交接口",
+      "path": "/interface/save",
+      "method": "post",
+      "description": "新增或更新接口",
+      "id": "dbf8208c-0c93-4f6d-8292-2c4821e2ee29"
+    },
+    {
+      "name": "删除接口",
+      "path": "/interface/del/:id",
+      "method": "delete",
+      "description": "删除接口",
+      "id": "1a9bcd3d-2b2e-4fb4-8b67-13321d744b40"
+    },
+    {
+      "name": "批量删除接口",
+      "path": "/interface/batchdel/:ids",
+      "method": "delete",
+      "description": "批量删除接口",
+      "id": "deb494eb-8417-4dcb-a7b9-7e0a3378930c"
+    },
+    {
+      "name": "关联接口",
+      "path": "/interface/relate",
+      "method": "post",
+      "description": "关联或取消关联",
+      "id": "a77d58dc-69c1-4fb4-ab96-2e613f49d425"
     }
   ],
   "functionInterface": [
