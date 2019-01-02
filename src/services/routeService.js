@@ -188,7 +188,7 @@ let buildRoute = (parentRoute, routeList) => {
 let buildAccessRoute = (parentRoute, routeList, userPermission) => {
     parentRoute.children = []
     let children = routeList.filter((item) => {
-        return item.parentId == parentMenu.id && (!item.permission || userPermission.indexOf(item.permission) > -1)
+        return item.parentId == parentRoute.id && (!item.permission || userPermission.indexOf(item.permission) > -1)
     })
     //父级没有权限访问，子级也不能访问
     for (let route of children) {

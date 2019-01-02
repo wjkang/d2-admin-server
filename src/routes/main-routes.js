@@ -11,11 +11,11 @@ router
   .post('/auth/login', controllers.auth.login)
   .post('/auth/logout', controllers.auth.logout)
 
-  .get('/menu', PermissionCheck({ permission: ["menu_view"] }), controllers.menu.getMenuList)
+  .get('/menu', PermissionCheck({ permission: ["p_menu_view"] }), controllers.menu.getMenuList)
   .get('/menu/access', controllers.menu.getAccessMenuList)
   .get('/menu/menufunctions', controllers.menu.getMenuFunctions)
   .get('/menu/:id', controllers.menu.getMenu)
-  .post('/menu/save', PermissionCheck({ permission: ["menu_edit"] }), controllers.menu.saveMenu)
+  .post('/menu/save', controllers.menu.saveMenu)
   .del('/menu/:id', controllers.menu.delMenu)
 
   .get('/route', controllers.route.getRouteList)
