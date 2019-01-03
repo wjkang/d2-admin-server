@@ -1,13 +1,15 @@
 import userService from '../services/userService'
+import interfaceService from '../services/interfaceService'
 import * as responseTemplate from '../lib/responseTemplate'
+import { match, parse } from 'matchit';
 
-module.exports = (permission = [],role = [],apiCheck=true) => {
+module.exports = (permission = [], role = [], apiCheck = true) => {
     return async function (ctx, next) {
-        console.log(ctx.request.url, ctx.request.method,apiCheck)
+        console.log(ctx.request.url, ctx.request.method, apiCheck)
         if (!ctx.user || !ctx.user.userId) {
             return responseTemplate.businessError(ctx, "没有访问权限")
         }
-        if (permission.length == 0 && role.length == 0&&!apiCheck) {
+        if (permission.length == 0 && role.length == 0 && !apiCheck) {
             return next()
         }
         let isAdmin = await userService.isAdmin(ctx.user.userId)
@@ -26,6 +28,13 @@ module.exports = (permission = [],role = [],apiCheck=true) => {
             return permission.indexOf(s) > -1
         })
         if (p && p.length > 0) {
+            return next()
+        }
+        let userAccessInterfaces = await interfaceService.getAccessInterfaceList(user.userId)
+        userAccessInterfaces = userAccessInterfaces.filter(s => s.method.toUpperCase() === ctx.request.method.toUpperCase()).map(s => parse(s.path))
+        let matched = match(ctx.request.url, userAccessInterfaces)
+        if (matched.length > 0) {
+            console.log(11111)
             return next()
         }
         return responseTemplate.businessError(ctx, "没有访问权限")
