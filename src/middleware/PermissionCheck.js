@@ -5,7 +5,6 @@ import { match, parse } from 'matchit';
 
 module.exports = (permission = [], role = [], apiCheck = true) => {
     return async function (ctx, next) {
-        console.log(ctx.request.url, ctx.request.method, apiCheck)
         if (!ctx.user || !ctx.user.userId) {
             return responseTemplate.businessError(ctx, "没有访问权限")
         }
@@ -30,11 +29,10 @@ module.exports = (permission = [], role = [], apiCheck = true) => {
         if (p && p.length > 0) {
             return next()
         }
-        let userAccessInterfaces = await interfaceService.getAccessInterfaceList(user.userId)
+        let userAccessInterfaces = await interfaceService.getAccessInterfaceList(ctx.user.userId)
         userAccessInterfaces = userAccessInterfaces.filter(s => s.method.toUpperCase() === ctx.request.method.toUpperCase()).map(s => parse(s.path))
-        let matched = match(ctx.request.url, userAccessInterfaces)
+        let matched = match(ctx.request.url.split("?")[0], userAccessInterfaces)
         if (matched.length > 0) {
-            console.log(11111)
             return next()
         }
         return responseTemplate.businessError(ctx, "没有访问权限")
