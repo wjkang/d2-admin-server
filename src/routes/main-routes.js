@@ -11,10 +11,10 @@ router
   .post('/auth/login', controllers.auth.login)
   .post('/auth/logout', controllers.auth.logout)
 
-  .get('/menu', PermissionCheck({ permission: ["p_menu_view"] }), controllers.menu.getMenuList)
+  .get('/menu', PermissionCheck(["p_menu_view"]), controllers.menu.getMenuList)
   .get('/menu/access', controllers.menu.getAccessMenuList)
   .get('/menu/menufunctions', controllers.menu.getMenuFunctions)
-  .get('/menu/:id', controllers.menu.getMenu)
+  .get('/menu/:id', PermissionCheck(), controllers.menu.getMenu)
   .post('/menu/save', controllers.menu.saveMenu)
   .del('/menu/:id', controllers.menu.delMenu)
 
@@ -25,26 +25,26 @@ router
   .del('/route/batchdel', controllers.route.delRoutes)
   .post('/route/save', controllers.route.saveRoute)
 
-  .get('/function/pagedlist', PermissionCheck({ permission: ["function_view"], role: ["test"] }), controllers.function.getFunctionPagedList)
-  .del('/function/del', PermissionCheck({ permission: ["function_del"] }), controllers.function.delFuntion)
-  .del('/function/batchdel', PermissionCheck({ permission: ["function_del"] }), controllers.function.delFuntions)
-  .post('/function/save', PermissionCheck({ permission: ["function_edit"] }), controllers.function.saveFuntion)
+  .get('/function/pagedlist', controllers.function.getFunctionPagedList)
+  .del('/function/del', controllers.function.delFuntion)
+  .del('/function/batchdel', controllers.function.delFuntions)
+  .post('/function/save', controllers.function.saveFuntion)
 
-  .get('/role/pagedlist', PermissionCheck({ permission: ["role_view", "role_permission_view", "role_user_view"] }), controllers.role.getRolePagedList)
+  .get('/role/pagedlist', controllers.role.getRolePagedList)
   .get('/role/:id', controllers.role.getRole)
   .get('/role/getpermissions/:roleId', controllers.role.getRolePermissions)
-  .del('/role/del', PermissionCheck({ permission: ["role_del"] }), controllers.role.delRole)
-  .del('/role/batchdel', PermissionCheck({ permission: ["role_del"] }), controllers.role.delRoles)
-  .post('/role/save', PermissionCheck({ permission: ["role_edit"] }), controllers.role.saveRole)
-  .post('/role/savepermission', PermissionCheck({ permission: ["role_permission_edit"] }), controllers.role.savePermission)
+  .del('/role/del', controllers.role.delRole)
+  .del('/role/batchdel', controllers.role.delRoles)
+  .post('/role/save', controllers.role.saveRole)
+  .post('/role/savepermission', controllers.role.savePermission)
 
-  .get('/user/pagedlist', PermissionCheck({ permission: ["user_view", "user_role_view"] }), controllers.user.getUserPagedList)
+  .get('/user/pagedlist', controllers.user.getUserPagedList)
   .get('/user/info', controllers.user.getUserInfo)
   .get('/user/:id', controllers.user.getUser)
-  .del('/user/del', PermissionCheck({ permission: ["user_del"] }), controllers.user.delUser)
-  .del('/user/batchdel', PermissionCheck({ permission: ["user_del"] }), controllers.user.delUsers)
-  .post('/user/save', PermissionCheck({ permission: ["user_edit"] }), controllers.user.saveUser)
-  .post('/user/editroleuser', PermissionCheck({ permission: ["role_user_edit", "user_role_edit"] }), controllers.user.editRoleUser)
+  .del('/user/del', controllers.user.delUser)
+  .del('/user/batchdel', controllers.user.delUsers)
+  .post('/user/save', controllers.user.saveUser)
+  .post('/user/editroleuser', controllers.user.editRoleUser)
 
   .get('/interface/paged', controllers.interface.getInterfacePagedList)
   .get('/interface/:id', controllers.interface.getInterface)
@@ -55,10 +55,10 @@ router
 
   .get('/requestlog/pagedlist', controllers.requestlog.getRequestLogPagedList)
 
-  .get('/post/pagedlist', PermissionCheck({ permission: ["post_view"] }), controllers.post.getPostPagedList)
+  .get('/post/pagedlist', controllers.post.getPostPagedList)
   .get('/post/top', controllers.post.getTopPost)
   .get('/post/:id', controllers.post.getPost)
-  .post('/post/save', PermissionCheck({ permission: ["post_edit"] }), controllers.post.savePost)
+  .post('/post/save', controllers.post.savePost)
 
   .post('/resetdb', controllers.system.resetDb)
 
