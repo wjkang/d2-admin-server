@@ -5,24 +5,24 @@
       "name": "admin",
       "password": "123",
       "email": "123@qq.com",
-      "phone": "18290024784",
-      "trueName": "张三"
+      "phone": "110",
+      "trueName": "超级管理员"
     },
     {
-      "name": "test",
-      "trueName": "测试",
+      "name": "MenuManager",
+      "trueName": "菜单管理员",
       "password": "123456",
       "id": "54a3488f-3c94-489e-bcd0-3f2631991f5e",
-      "phone": "4",
-      "email": "4"
+      "phone": "110",
+      "email": "12345@qq.com"
     },
     {
-      "name": "website_admin",
-      "trueName": "网站模块管理员A",
+      "name": "no",
+      "trueName": "没有权限的用户",
       "password": "123456",
       "id": "92e6b921-d820-4ea6-9b57-95b1378c961e",
-      "phone": "1",
-      "email": "1"
+      "phone": "110",
+      "email": "66666@qq.com"
     }
   ],
   "admin": [
@@ -54,21 +54,23 @@
       "icon": "th-list",
       "sort": "1",
       "type": 1,
-      "permission": "P_VIEW_MENUMANAGEMENU"
+      "permission": "p_menu_menu"
     },
     {
       "id": "34943e8f-5e57-4038-bd2f-6c13e3c5f168",
       "parentId": "1f3ea5ba-0d67-4710-b75c-52a267296b85",
       "title": "2-查询菜单",
       "sort": "2",
-      "type": 2
+      "type": 2,
+      "permission": "p_menu_view"
     },
     {
       "id": "3423218d-886c-4fb7-944d-42afe4c03076",
       "parentId": "1f3ea5ba-0d67-4710-b75c-52a267296b85",
       "title": "3-修改菜单",
       "sort": "3",
-      "type": 2
+      "type": 2,
+      "permission": "p_menu_edit"
     },
     {
       "id": "c2578794-328c-4f0f-bbba-289ebdace7f1",
@@ -76,7 +78,7 @@
       "title": "1-菜单权限",
       "type": 2,
       "sort": "1",
-      "permission": "P_VIEW_MENUMANAGEMENU"
+      "permission": "p_menu_menu"
     },
     {
       "id": "6db38bfe-9ad0-4db4-a9be-28082741ef20",
@@ -84,7 +86,7 @@
       "path": "/system/route",
       "title": "路由管理",
       "type": 1,
-      "permission": "P_VIEW_ROLEMANAGEMENU",
+      "permission": "p_route_menu",
       "sort": "2",
       "icon": "share-alt-square"
     },
@@ -93,7 +95,7 @@
       "parentId": "6db38bfe-9ad0-4db4-a9be-28082741ef20",
       "title": "1-菜单权限",
       "type": 2,
-      "permission": "P_VIEW_ROLEMANAGEMENU"
+      "permission": "p_route_menu"
     },
     {
       "id": "1a74ac59-001c-4914-874e-6dbefe33415c",
@@ -102,7 +104,8 @@
       "path": "/system/role",
       "type": 1,
       "sort": "3",
-      "icon": "users"
+      "icon": "users",
+      "permission": "p_role_menu"
     },
     {
       "id": "d0d47bda-ab26-4909-a7f2-74bc2591a357",
@@ -111,7 +114,8 @@
       "path": "/system/user",
       "sort": "4",
       "type": 1,
-      "icon": "user"
+      "icon": "user",
+      "permission": "p_user_menu"
     },
     {
       "id": "85bfdc38-fca4-4703-ad22-2cba711fc42a",
@@ -120,25 +124,29 @@
       "path": "/system/interface",
       "type": 1,
       "sort": "5",
-      "icon": "paper-plane"
+      "icon": "paper-plane",
+      "permission": "p_interface_menu"
     },
     {
       "id": "5e5b0453-cb24-4a8f-89ef-360922cecba5",
       "parentId": "1a74ac59-001c-4914-874e-6dbefe33415c",
       "title": "1-菜单权限",
-      "type": 2
+      "type": 2,
+      "permission": "p_role_menu"
     },
     {
       "id": "97273b77-bda3-47ad-bd93-3c904fb8fb10",
       "parentId": "d0d47bda-ab26-4909-a7f2-74bc2591a357",
       "title": "1-菜单权限",
-      "type": 2
+      "type": 2,
+      "permission": "p_user_menu"
     },
     {
       "id": "21352cb0-870b-40f0-acc9-362846fd1506",
       "parentId": "85bfdc38-fca4-4703-ad22-2cba711fc42a",
       "title": "1-菜单权限",
-      "type": 2
+      "type": 2,
+      "permission": "p_interface_menu"
     },
     {
       "id": "18c7a1e3-3c69-4242-afd7-6f54bfdce271",
@@ -459,25 +467,30 @@
       "interfaceId": "c6567a47-0382-4eb9-852b-3db2c8be9251"
     },
     {
-      "functionId": "34943e8f-5e57-4038-bd2f-6c13e3c5f168",
+      "functionId": "3423218d-886c-4fb7-944d-42afe4c03076",
+      "interfaceId": "8dba087e-ba42-4220-a036-0de4adc0f585"
+    },
+    {
+      "functionId": "c2578794-328c-4f0f-bbba-289ebdace7f1",
       "interfaceId": "23c892ed-76c6-4bdb-9240-4618b3fc4399"
     },
     {
       "functionId": "3423218d-886c-4fb7-944d-42afe4c03076",
-      "interfaceId": "8dba087e-ba42-4220-a036-0de4adc0f585"
+      "interfaceId": "72ce9b95-8b49-42f5-96f9-488f42f84da4"
     }
   ],
   "role": [
     {
-      "name": "1",
-      "code": "1",
-      "description": "1",
-      "id": "6db7bf60-1cbc-404b-9894-4dd6f4a02959"
+      "name": "菜单管理员",
+      "code": "R_MENUADMIN",
+      "description": "菜单管理员",
+      "id": "6db7bf60-1cbc-404b-9894-4dd6f4a02959",
+      "isAdd": 2
     }
   ],
   "roleUser": [
     {
-      "userId": "1",
+      "userId": "54a3488f-3c94-489e-bcd0-3f2631991f5e",
       "roleId": "6db7bf60-1cbc-404b-9894-4dd6f4a02959"
     }
   ],
@@ -485,17 +498,17 @@
     {
       "roleId": "6db7bf60-1cbc-404b-9894-4dd6f4a02959",
       "functionId": "c2578794-328c-4f0f-bbba-289ebdace7f1",
-      "id": "fb154a9a-20cc-4cec-be91-22cd4c88aa0f"
+      "id": "6500ee1f-eaec-4c56-ad60-06b3367d45ba"
     },
     {
       "roleId": "6db7bf60-1cbc-404b-9894-4dd6f4a02959",
       "functionId": "34943e8f-5e57-4038-bd2f-6c13e3c5f168",
-      "id": "3d973bd3-3c16-4603-a45b-137240558b0e"
+      "id": "6c9ef830-a5f8-45e2-927b-d096e81052db"
     },
     {
       "roleId": "6db7bf60-1cbc-404b-9894-4dd6f4a02959",
       "functionId": "3423218d-886c-4fb7-944d-42afe4c03076",
-      "id": "403fc375-2c85-44be-8e6a-122200ae3fdd"
+      "id": "968204ac-97c3-4f2c-bb3c-3ea1aa89731e"
     }
   ],
   "function": [],

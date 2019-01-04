@@ -69,7 +69,8 @@
       "parentId": "1f3ea5ba-0d67-4710-b75c-52a267296b85",
       "title": "3-修改菜单",
       "sort": "3",
-      "type": 2
+      "type": 2,
+      "permission": "p_menu_edit"
     },
     {
       "id": "c2578794-328c-4f0f-bbba-289ebdace7f1",
