@@ -5,8 +5,8 @@ var Random = Mock.Random
 
 //必须包含字段id
 export default {
-    name: "book",
-    Name: "Book",
+    name: "interface",
+    Name: "Interface",
     properties: [
         {
             key: "id",
@@ -14,27 +14,35 @@ export default {
         },
         {
             key: "name",
-            title: "书名"
+            title: "名称"
         },
         {
-            key: "author",
-            title: "作者"
+            key: "path",
+            title: "接口地址"
         },
         {
-            key: "press",
-            title: "出版社"
+            key: "method",
+            title: "接口方法"
+        },
+        {
+            key: "isLocked",
+            title: "是否锁定"
+        },
+        {
+            key: "description",
+            title: "接口描述"
         }
     ],
     buildMockData: function () {//不需要生成设为false
         let data = []
-        for (let i = 0; i < 100; i++) {
-            data.push({
-                id: shortid.generate(),
-                name: Random.cword(5, 7),
-                author: Random.cname(),
-                press: Random.cword(5, 7)
-            })
-        }
+        // for (let i = 0; i < 100; i++) {
+        //     data.push({
+        //         id: shortid.generate(),
+        //         name: Random.cword(5, 7),
+        //         author: Random.cname(),
+        //         press: Random.cword(5, 7)
+        //     })
+        // }
         return data
     }
 }
